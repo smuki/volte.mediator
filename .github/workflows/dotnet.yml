@@ -1,0 +1,51 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    # Pattern matched against refs/tags
+    tags:        
+      - '*'           # Push events to every tag not containing /
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Get version
+      id: get_version
+      run: |
+          export PackageVersion=`echo ${{ github.ref }} | cut -d "/" -f3`
+          echo ::save-state name=VERSION::${PackageVersion}
+          sed -in-place "s#1.2.3.4#${PackageVersion}#g" ./Volte.Mediator.csproj  
+          cat ./Volte.Mediator.csproj  
+      working-directory: ./src/          
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: ./src/      
+    - name: Build
+      run: dotnet build --no-restore
+      working-directory: ./src/      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      working-directory: ./src/      
+    - name: Package Release
+      run: |
+          export PackageVersion=`echo ${{ github.ref }} | cut -d "/" -f3`      
+          dotnet pack -c Release -p:PackageVersion=$PackageVersion -o ../out
+      working-directory: ./src/      
+    - name: Publish Nuget to GitHub registry
+      run: dotnet nuget push ./*.nupkg -s https://nuget.pkg.github.com/smuki/index.json -k ${{secrets.TOKEN}} --skip-duplicate 
+      working-directory: ./out/      
+    - name: Publish NuGet package
+      run: dotnet nuget push ./*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      working-directory: ./out/      
+      
