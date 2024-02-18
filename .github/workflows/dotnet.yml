@@ -42,9 +42,6 @@ jobs:
           export PackageVersion=`echo ${{ github.ref }} | cut -d "/" -f3`      
           dotnet pack -c Release -p:PackageVersion=$PackageVersion -o ../out
       working-directory: ./src/      
-    - name: Publish Nuget to GitHub registry
-      run: dotnet nuget push ./*.nupkg -s https://nuget.pkg.github.com/smuki/index.json -k ${{secrets.TOKEN}} --skip-duplicate 
-      working-directory: ./out/      
     - name: Publish NuGet package
       run: dotnet nuget push ./*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
       working-directory: ./out/      
