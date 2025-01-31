@@ -1,9 +1,4 @@
 namespace Volte.Mediator.Middleware.Notification.Contracts;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 /// <summary>
 /// Represents a notification middleware component.

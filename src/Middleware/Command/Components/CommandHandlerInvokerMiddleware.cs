@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Volte.Mediator.Contexts;
 using Volte.Mediator.Contracts;
 using Volte.Mediator.Middleware.Command.Contracts;
@@ -37,7 +33,7 @@ public class CommandHandlerInvokerMiddleware : ICommandMiddleware
         var handlerType = typeof(ICommandHandler<,>).MakeGenericType(commandType, resultType);
         var handlers = _commandHandlers.Where(x => handlerType.IsInstanceOfType(x)).ToArray();
 
-        if (!handlers.Any())
+        if (handlers.Length == 0)
             throw new InvalidOperationException($"There is no handler to handle the {commandType.FullName} command");
 
         if (handlers.Length > 1)

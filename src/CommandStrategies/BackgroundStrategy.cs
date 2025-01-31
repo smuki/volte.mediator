@@ -1,7 +1,6 @@
 using Volte.Mediator.Contexts;
 using Volte.Mediator.Contracts;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 
 namespace Volte.Mediator.CommandStrategies;
 

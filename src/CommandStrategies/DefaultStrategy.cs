@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Volte.Mediator.Contexts;
 using Volte.Mediator.Contracts;
 using Volte.Mediator.Extensions;

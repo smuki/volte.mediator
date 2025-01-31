@@ -1,8 +1,4 @@
 namespace Volte.Mediator.Middleware.Request.Contracts;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// Represents a request pipeline. A request pipeline is a chain of middleware that can be used to process a request.

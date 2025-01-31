@@ -1,9 +1,6 @@
 using Volte.Mediator.Contracts;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
 
 namespace Volte.Mediator.HostedServices;
 
@@ -46,6 +43,10 @@ public class JobRunnerHostedService : BackgroundService
             catch (OperationCanceledException)
             {
                 _logger.LogInformation("Job {JobId} was canceled", jobItem.JobId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Job {JobId} failed", jobItem.JobId);
             }
             finally
             {

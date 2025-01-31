@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Volte.Mediator.Middleware.Notification.Contracts;
 
 namespace Volte.Mediator.Middleware.Notification;

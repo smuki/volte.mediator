@@ -2,10 +2,6 @@ using Volte.Mediator.Contexts;
 using Volte.Mediator.Contracts;
 using Volte.Mediator.Middleware.Notification.Contracts;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace Volte.Mediator.Middleware.Notification.Components;
 

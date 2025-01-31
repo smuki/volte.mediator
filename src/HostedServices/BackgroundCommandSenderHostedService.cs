@@ -3,10 +3,6 @@ using Volte.Mediator.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
-using System.Collections.Generic;
 
 namespace Volte.Mediator.HostedServices;
 
@@ -18,7 +14,7 @@ public class BackgroundCommandSenderHostedService : BackgroundService
     private readonly int _workerCount;
     private readonly ICommandsChannel _commandsChannel;
     private readonly IServiceScopeFactory _scopeFactory;
-    private readonly IList<Channel<ICommand>> _outputs;
+    private readonly List<Channel<ICommand>> _outputs;
     private readonly ILogger _logger;
 
     /// <inheritdoc />

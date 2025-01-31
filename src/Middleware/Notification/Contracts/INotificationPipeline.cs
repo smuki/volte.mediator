@@ -1,8 +1,4 @@
 namespace Volte.Mediator.Middleware.Notification.Contracts;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// Represents a notification request pipeline. A notification pipeline is a chain of middleware that can be used to process a notification.

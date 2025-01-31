@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-
 namespace Volte.Mediator.Middleware.Command.Contracts;
 
 /// <summary>

@@ -1,7 +1,5 @@
 using Volte.Mediator.Contracts;
 using Microsoft.Extensions.Logging;
-using System.Threading;
-using System;
 
 namespace Volte.Mediator.Contexts;
 

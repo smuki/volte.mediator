@@ -1,6 +1,5 @@
 using Volte.Mediator.Middleware.Command.Contracts;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 
 namespace Volte.Mediator.Middleware.Command;
 

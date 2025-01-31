@@ -1,7 +1,4 @@
 namespace Volte.Mediator.Contracts;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
 
 /// <summary>
 /// Represents a consumer of a given message type.

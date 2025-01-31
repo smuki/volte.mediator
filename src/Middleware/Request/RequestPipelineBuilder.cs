@@ -1,9 +1,4 @@
 using Volte.Mediator.Middleware.Request.Contracts;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Volte.Mediator.Middleware.Request;
 
@@ -11,7 +6,7 @@ namespace Volte.Mediator.Middleware.Request;
 public class RequestPipelineBuilder : IRequestPipelineBuilder
 {
     private const string ServicesKey = "mediator.Services";
-    private readonly IList<Func<RequestMiddlewareDelegate, RequestMiddlewareDelegate>> _components = new List<Func<RequestMiddlewareDelegate, RequestMiddlewareDelegate>>();
+    private readonly List<Func<RequestMiddlewareDelegate, RequestMiddlewareDelegate>> _components = new();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="RequestPipelineBuilder"/> class.
@@ -43,8 +38,10 @@ public class RequestPipelineBuilder : IRequestPipelineBuilder
     {
         RequestMiddlewareDelegate pipeline = _ => new ValueTask();
 
-        foreach (var component in _components.Reverse())
-            pipeline = component(pipeline);
+        for (int i = _components.Count - 1; i >= 0; i--)
+        {
+            pipeline = _components[i](pipeline);
+        }
 
         return pipeline;
     }
